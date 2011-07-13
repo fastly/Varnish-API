@@ -6,4 +6,4 @@ use Devel::Peek;
 
 
 my $foo = Varnish::API::VSL_tags(45);
-is($foo, "Hit");
+is($foo, "ExpKill");
