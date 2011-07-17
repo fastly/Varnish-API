@@ -183,6 +183,15 @@ VSL_New()
 	sv_2mortal(ST(0));
 	XSRETURN(1);
 
+int
+VSL_Arg(vd, arg, opt)
+	SV *vd
+        int arg
+        const char *opt
+	CODE:
+	struct VSL_data* data = (struct VSL_data*) SvIV(vd);
+	VSL_Arg(data, arg, opt);
+
 SV* 
 VSL_NextLog(vd)
 	SV* vd;

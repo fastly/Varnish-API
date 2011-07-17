@@ -1,5 +1,5 @@
 
-use Test::More tests => 7;
+use Test::More tests => 8;
 BEGIN { use_ok('Varnish::API') };
 use Devel::Peek;
 
@@ -26,3 +26,11 @@ Varnish::API::VSL_Dispatch($vd, sub {
 			     like($args[1], qr /^\d+$/, "Second is the fd number");
 			   });
 
+
+Varnish::API::VSL_Arg($vd, ord("i"), "CLI");
+
+Varnish::API::VSL_Dispatch($vd, sub {
+			     my @args = @_;
+			     is ($_[0], "CLI", "Only CLI allowed");
+			     return 1;
+			   });
